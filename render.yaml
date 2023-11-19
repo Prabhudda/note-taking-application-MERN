@@ -1,0 +1,16 @@
+# render.yaml
+
+services:
+  - name: client
+    buildCommand: |
+      cd client
+      npm install
+      npm run build
+    startCommand: npm start
+
+  - name: server
+    buildCommand: |
+      cd server
+      npm install
+      npm run build  # Adjust this if your server has a different build command
+    startCommand: npm start
