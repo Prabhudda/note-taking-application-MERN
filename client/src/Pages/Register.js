@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -24,7 +24,10 @@ const Register = () => {
       setError(response.data.message);
     } catch (error) {
       console.error('Registration failed:', error.message);
-      setError(error);
+      // setError(error);
+      setError(
+        error.response?.data.message || 'Registration failed. Please try again.'
+      );
     }
   };
 
@@ -37,6 +40,7 @@ const Register = () => {
             Username:
           </label>
           <input
+            autoFocus
             type='text'
             className='form-control'
             id='username'

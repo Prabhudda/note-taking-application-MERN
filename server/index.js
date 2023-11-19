@@ -119,7 +119,12 @@ app.put('/update/:id', (req, res) => {
 app.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const hashedPassword = bcrypt.hash(password, process.env.HASH_KEY);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(
+      password + process.env.HASH_KEY,
+      saltRounds
+    );
+
     const q = 'SELECT * FROM users WHERE username=? OR email=?';
 
     db.query(q, [username, email], (err, result) => {
@@ -174,7 +179,7 @@ app.post('/login', async (req, res) => {
 
       if (result.length > 0) {
         const comparePassword = await bcrypt.compare(
-          password,
+          password + process.env.HASH_KEY,
           result[0].password
         );
 

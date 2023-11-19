@@ -15,12 +15,13 @@ const Login = () => {
   return (
     <div className='container mt-5'>
       <h2 className='mb-4'>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} autoComplete='true'>
         <div className='mb-3'>
           <label htmlFor='username' className='form-label'>
             Username:
           </label>
           <input
+            autoFocus
             type='text'
             className='form-control'
             id='username'
