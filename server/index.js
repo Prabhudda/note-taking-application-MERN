@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(cookie());
 
 const db = mysql.createConnection({
+  connectionLimit: 10,
   host: 'localhost',
   user: 'root',
   password: process.env.DB_PASSWORD,
@@ -192,6 +193,7 @@ app.post('/login', async (req, res) => {
           res.cookie('token', token, {
             httpOnly: true,
             secure: true,
+            sameSite: 'Strict',
           });
           return res.json({ message: 'User logged in', token, user });
         } else {
