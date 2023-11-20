@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
+let PORT = process.env.PORT || 4000;
 
 const app = express();
 
@@ -206,6 +207,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   console.log('Server is running on port 8080');
 });
