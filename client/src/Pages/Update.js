@@ -23,7 +23,10 @@ function Update() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await axios.put(`http://localhost:8080/update/${ID}`, note);
+    const res = await axios.put(
+      `https://note-taking-application-frontend.onrender.com/update/${ID}`,
+      note
+    );
     // console.log(res);
     navigation('/');
   };

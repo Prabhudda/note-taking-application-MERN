@@ -10,7 +10,11 @@ let PORT = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://note-taking-application-frontend.onrender.com',
+  })
+);
 app.use(express.json());
 app.use(cookie());
 
