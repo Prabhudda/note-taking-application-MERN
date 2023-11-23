@@ -20,14 +20,11 @@ function NoteProvider({ children }) {
 
   const getData = async () => {
     try {
-      const response = await axios.get(
-        'https://note-taking-application-frontend.onrender.com',
-        {
-          headers: {
-            authorization: userId,
-          },
-        }
-      );
+      const response = await axios.get('http://localhost:8080', {
+        headers: {
+          authorization: userId,
+        },
+      });
       setData(response.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -47,12 +44,22 @@ function NoteProvider({ children }) {
 
   const onDelete = async (id) => {
     try {
-      await axios.delete(
-        `https://note-taking-application-frontend.onrender.com/delete/${id}`
-      );
+      await axios.delete(`http://localhost:8080/delete/${id}`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting data:', error);
+    }
+  };
+  const deleteUserAccount = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/delete/account/${userId}`);
+      Cookies.remove('token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('userId');
+      setCurrentUser(null);
+      navigate('/register');
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -63,10 +70,7 @@ function NoteProvider({ children }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'https://note-taking-application-frontend.onrender.com/create',
-        note
-      );
+      const response = await axios.post('http://localhost:8080/create', note);
       console.log(response.data);
       setNote({ id: null, title: '', description: '', userId: userId });
       await getData();
@@ -80,13 +84,10 @@ function NoteProvider({ children }) {
 
   const Login = async (username, password) => {
     try {
-      const response = await axios.post(
-        'https://note-taking-application-frontend.onrender.com/login',
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post('http://localhost:8080/login', {
+        username,
+        password,
+      });
       if (response.data.error) {
         setError(response.data.error);
       } else {
@@ -144,6 +145,7 @@ function NoteProvider({ children }) {
         error,
         handleLogout,
         userId,
+        deleteUserAccount,
       }}
     >
       {children}

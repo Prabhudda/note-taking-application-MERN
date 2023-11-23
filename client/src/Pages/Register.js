@@ -13,14 +13,11 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'https://note-taking-application-frontend.onrender.com/register',
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post('http://localhost:8080/register', {
+        username,
+        email,
+        password,
+      });
       // console.log(response.data.message);
 
       // console.log('Registration successful:');
@@ -35,62 +32,69 @@ const Register = () => {
   };
 
   return (
-    <div className='container mt-5'>
-      <h2 className='mb-4'>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div className='mb-3'>
-          <label htmlFor='username' className='form-label'>
-            Username:
-          </label>
-          <input
-            autoFocus
-            type='text'
-            className='form-control'
-            id='username'
-            value={username}
-            required
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div className='container'>
+      <div
+        className='d-flex justify-content-center align-items-center'
+        style={{ height: '100vh', width: '100%' }}
+      >
+        <div className='w-50'>
+          <h2 className='mb-4'>Register</h2>
+          <form onSubmit={handleRegister}>
+            <div className='mb-3'>
+              <label htmlFor='username' className='form-label'>
+                Username:
+              </label>
+              <input
+                autoFocus
+                type='text'
+                className='form-control'
+                id='username'
+                value={username}
+                required
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='email' className='form-label'>
+                Email:
+              </label>
+              <input
+                type='email'
+                className='form-control'
+                id='email'
+                value={email}
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='password' className='form-label'>
+                Password:
+              </label>
+              <input
+                type='password'
+                className='form-control'
+                id='password'
+                value={password}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type='submit' className='btn btn-primary'>
+              Register
+            </button>
+            <p className='mt-3'>
+              if you have an account,
+              <span className='mx-2'>
+                <Link to='/login' className=''>
+                  Login
+                </Link>
+              </span>
+            </p>
+            {error && <p className='text-success'>{error}</p>}
+          </form>
         </div>
-        <div className='mb-3'>
-          <label htmlFor='email' className='form-label'>
-            Email:
-          </label>
-          <input
-            type='email'
-            className='form-control'
-            id='email'
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
-            Password:
-          </label>
-          <input
-            type='password'
-            className='form-control'
-            id='password'
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type='submit' className='btn btn-primary'>
-          Register
-        </button>
-        <p className='mt-3'>
-          if you have an account,
-          <span className='mx-2'>
-            <Link to='/login' className=''>
-              Login
-            </Link>
-          </span>
-        </p>
-        {error && <p className='text-success'>{error}</p>}
-      </form>
+      </div>
     </div>
   );
 };

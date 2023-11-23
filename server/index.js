@@ -10,11 +10,7 @@ let PORT = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(
-  cors({
-    origin: 'https://note-taking-application-frontend.onrender.com',
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(cookie());
 
@@ -103,6 +99,17 @@ app.delete('/delete/:id', (req, res) => {
       console.log(result);
       res.json({ message: 'Data deleted from the database', data: result });
     }
+  });
+});
+
+app.delete('/delete/account/:userId', (req, res) => {
+  const userId = req.params.userId;
+  console.log(userId);
+  let q = 'delete from users where id = ?';
+  db.query(q, [userId], (err, result) => {
+    if (err) return res.json({ message: 'unable to delete your accout' });
+    // console.log(result);
+    return res.json({ message: result });
   });
 });
 
