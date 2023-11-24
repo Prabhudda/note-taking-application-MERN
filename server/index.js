@@ -18,15 +18,15 @@ app.use(
 app.use(express.json());
 app.use(cookie());
 
-const db = mysql.createConnection({
-  connectionLimit: 20,
+const db = mysql.createPool({
+  connectionLimit: 30,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 });
 
-db.connect((err) => {
+db.getConnection()((err) => {
   if (err) {
     console.error('Database connection error:', err.message);
   } else {
