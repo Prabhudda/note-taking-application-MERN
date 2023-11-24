@@ -102,40 +102,51 @@ function Home() {
         </div>
 
         <div className='row my-5 justify-content-center'>
-          {data.length <= 0
-            ? ''
-            : data.map((item) => (
-                <div
-                  className='col-lg-5 d-flex justify-content-between align-items-start'
-                  key={item.id}
-                >
-                  <div className='border p-3 m-1 flex-fill rounded'>
-                    <div>
-                      <h6 className='text-dark'>{item.title.toUpperCase()}</h6>
-                      <hr></hr>
-                      <p className='description lead'>{item.description}</p>
+          {data.length <= 0 ? (
+            <div className='text-center home-text'>
+              <h2 className='text-center'>Welcome, {currentUser}!</h2>
+              <p className='lead mt-3'>
+                It looks like you haven't created any notes yet. Start capturing
+                your thoughts and ideas!
+              </p>
+              <p className='lead'>
+                Click the "Create Note" button to get started.
+              </p>
+            </div>
+          ) : (
+            data.map((item) => (
+              <div
+                className='col-lg-5 d-flex justify-content-between align-items-start'
+                key={item.id}
+              >
+                <div className='border p-3 m-1 flex-fill rounded'>
+                  <div>
+                    <h6 className='text-dark'>{item.title.toUpperCase()}</h6>
+                    <hr></hr>
+                    <p className='description lead'>{item.description}</p>
+                  </div>
+                  <div className=' d-flex justify-content-between'>
+                    <div className='' title='Delete'>
+                      <button
+                        className='w-100 btn btn-outline-danger px-2 py-1'
+                        onClick={() => onDelete(item.id)}
+                      >
+                        <FaTrash />
+                      </button>
                     </div>
-                    <div className=' d-flex justify-content-between'>
-                      <div className='' title='Delete'>
-                        <button
-                          className='w-100 btn btn-outline-danger px-2 py-1'
-                          onClick={() => onDelete(item.id)}
-                        >
-                          <FaTrash />
-                        </button>
-                      </div>
-                      <div className=' text-center' title='Edit'>
-                        <Link
-                          to={`/update/${item.id}`}
-                          className='w-100 btn btn-outline-success px-2 py-1'
-                        >
-                          <FaEdit className='' />
-                        </Link>
-                      </div>
+                    <div className=' text-center' title='Edit'>
+                      <Link
+                        to={`/update/${item.id}`}
+                        className='w-100 btn btn-outline-success px-2 py-1'
+                      >
+                        <FaEdit className='' />
+                      </Link>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))
+          )}
         </div>
       </div>
       {!currentUser && (
