@@ -21,13 +21,11 @@ const Register = () => {
           password,
         }
       );
-      // console.log(response.data.message);
 
-      // console.log('Registration successful:');
       setError(response.data.message);
     } catch (error) {
       console.error('Registration failed:', error.message);
-      // setError(error);
+
       setError(
         error.response?.data.message || 'Registration failed. Please try again.'
       );
