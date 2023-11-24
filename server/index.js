@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
-let PORT = process.env.PORT || 4001 ;
+let PORT = process.env.PORT || 4001;
 
 const app = express();
 

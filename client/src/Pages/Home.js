@@ -102,18 +102,7 @@ function Home() {
         </div>
 
         <div className='row my-5 justify-content-center'>
-          {data.length <= 0 ? (
-            <div className='text-center home-text'>
-              <h2 className='text-center'>Welcome, {currentUser}!</h2>
-              <p className='lead mt-3'>
-                It looks like you haven't created any notes yet. Start capturing
-                your thoughts and ideas!
-              </p>
-              <p className='lead'>
-                Click the "Create Note" button to get started.
-              </p>
-            </div>
-          ) : (
+          {data.length <= 0 &&
             data.map((item) => (
               <div
                 className='col-lg-5 d-flex justify-content-between align-items-start'
@@ -145,11 +134,10 @@ function Home() {
                   </div>
                 </div>
               </div>
-            ))
-          )}
+            ))}
         </div>
       </div>
-      {!currentUser && (
+      {!currentUser ? (
         <div className='text-center home-text'>
           <h2 className='text-center'>Your Digital Notepad</h2>
           <p className='lead mt-3'>
@@ -158,6 +146,19 @@ function Home() {
           </p>
           <p className='lead'>Start your journey with NoteHub</p>
         </div>
+      ) : (
+        data.length <= 0 && (
+          <div className='text-center home-text'>
+            <h2 className='text-center'>Welcome, {currentUser}!</h2>
+            <p className='lead mt-3'>
+              It looks like you haven't created any notes yet. Start capturing
+              your thoughts and ideas!
+            </p>
+            <p className='lead'>
+              Click the "Create Note" button to get started.
+            </p>
+          </div>
+        )
       )}
     </div>
   );
