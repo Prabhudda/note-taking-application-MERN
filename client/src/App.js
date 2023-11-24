@@ -5,7 +5,6 @@ import Update from './Pages/Update';
 import Create from './Pages/Create';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-
 function App() {
   return (
     <div className='container'>

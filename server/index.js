@@ -26,7 +26,7 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-db.getConnection()((err) => {
+db.getConnection((err) => {
   if (err) {
     console.error('Database connection error:', err.message);
   } else {
@@ -177,7 +177,7 @@ app.post('/register', async (req, res) => {
     });
   } catch (error) {
     console.error('Error during user registration:', error.message);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: error });
   }
 });
 
