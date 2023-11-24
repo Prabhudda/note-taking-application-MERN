@@ -148,7 +148,7 @@ function Home() {
         </div>
       )}
       {!data ||
-        (data.length <= 0 && (
+        (data.length <= 0 && currentUser && (
           <div className='text-center home-text'>
             <div>
               <h2 className='text-center'>Welcome, {currentUser}!</h2>
