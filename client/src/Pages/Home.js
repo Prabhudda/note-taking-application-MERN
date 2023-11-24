@@ -36,7 +36,7 @@ function Home() {
       <div className='container position-relative'>
         <div className='mt-5  d-flex justify-content-between align-items-center'>
           <div className=''>
-            <h2 className=''>NoteHub</h2>
+            <h2 className=''>Note.Hub</h2>
           </div>
 
           <div className='d-flex'>
@@ -142,9 +142,9 @@ function Home() {
           <h2 className='text-center'>Your Digital Notepad</h2>
           <p className='lead mt-3'>
             Unleash your creativity, stay organized, and never miss a brilliant
-            idea. Your notes, with NoteHub
+            idea. Your notes, with Note.Hub
           </p>
-          <p className='lead'>Start your journey with NoteHub</p>
+          <p className='lead'>Start your journey with Note.Hub</p>
         </div>
       ) : (
         data.length <= 0 && (

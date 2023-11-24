@@ -18,8 +18,8 @@ const Login = () => {
         className='d-flex justify-content-center align-items-center'
         style={{ height: '100vh', width: '100%' }}
       >
-        <div className='w-50'>
-          <h2 className='mb-4'>Login</h2>
+        <div className='form-box'>
+          <h2 className='mb-5'>Login</h2>
           <form onSubmit={handleLogin} autoComplete='true'>
             <div className='mb-3'>
               <label htmlFor='username' className='form-label'>

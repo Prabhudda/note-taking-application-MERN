@@ -11,7 +11,7 @@ function Create() {
         className='d-flex justify-content-center align-items-center'
         style={{ height: '100vh', width: '100%' }}
       >
-        <div className='w-50 w-sm-100'>
+        <div className='form-box'>
           <h2 className='pt-5 mb-5'>Create Note</h2>
           <form onSubmit={handleSubmit} className=''>
             <div className='mb-3'>

@@ -37,8 +37,8 @@ function Update() {
         className='d-flex justify-content-center align-items-center'
         style={{ height: '100vh', width: '100%' }}
       >
-        <div className='w-md-50 w-100'>
-          <h2>Update Note</h2>
+        <div className='form-box'>
+          <h2 className='mb-5'>Update Note</h2>
           <form onSubmit={handleUpdate}>
             <div className='mb-3'>
               <label htmlFor='title' className='form-label'>
