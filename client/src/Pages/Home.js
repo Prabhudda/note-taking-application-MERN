@@ -147,25 +147,26 @@ function Home() {
           <p className='lead'>Start your journey with Note.Hub</p>
         </div>
       )}
-      {data.length <= 0 && (
-        <div className='text-center home-text'>
-          <div>
-            <h2 className='text-center'>Welcome, {currentUser}!</h2>
-            <p className='lead mt-3'>
-              It looks like you haven't created any notes yet. Start capturing
-              your thoughts and ideas!
-            </p>
-            <p className='lead'>
-              Click the "Create Note" button to get started.
-            </p>
+      {!data ||
+        (data.length <= 0 && (
+          <div className='text-center home-text'>
+            <div>
+              <h2 className='text-center'>Welcome, {currentUser}!</h2>
+              <p className='lead mt-3'>
+                It looks like you haven't created any notes yet. Start capturing
+                your thoughts and ideas!
+              </p>
+              <p className='lead'>
+                Click the "Create Note" button to get started.
+              </p>
+            </div>
+            <div className=''>
+              <Link to='/create' className='btn btn-outline-primary'>
+                Create Note
+              </Link>
+            </div>
           </div>
-          <div className=''>
-            <Link to='/create' className='btn btn-outline-primary'>
-              Create Note
-            </Link>
-          </div>
-        </div>
-      )}
+        ))}
     </div>
   );
 }
