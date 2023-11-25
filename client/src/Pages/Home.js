@@ -160,7 +160,7 @@ function Home() {
             </p>
           </div>
           <div className=''>
-            <Link to='/create' className='btn btn-outline-primary'>
+            <Link to='/create' className='btn btn-outline-success'>
               Create Note
             </Link>
           </div>
