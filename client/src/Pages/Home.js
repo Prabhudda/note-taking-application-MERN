@@ -102,7 +102,7 @@ function Home() {
         </div>
 
         <div className='row my-5 justify-content-center'>
-          {data.length <= 0 &&
+          {!data.length <= 0 &&
             data.map((item) => (
               <div
                 className='col-lg-5 d-flex justify-content-between align-items-start'
