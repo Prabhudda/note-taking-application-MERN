@@ -78,7 +78,7 @@ function Navbar() {
                 >
                   <div className=''>
                     <div
-                      className='mt-2 w-100 py-0 py-1 d-flex justify-content-center align-items-center rounded'
+                      className='mt-2 w-100 py-1 px-2 d-flex justify-content-center align-items-center rounded'
                       style={{
                         fontSize: '13px',
                         border: '1px solid #007bff',
