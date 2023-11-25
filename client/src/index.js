@@ -5,7 +5,6 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoteProvider from './Context';
 import { BrowserRouter } from 'react-router-dom';
-// import WebSocketComponent from './WebSocketComponent.js';
 
 const root = createRoot(document.getElementById('root'));
 

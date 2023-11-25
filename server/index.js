@@ -38,34 +38,6 @@ db.getConnection((err) => {
   }
 });
 
-// app.get('/', (req, res) => {
-//   const q = 'SELECT * FROM notes';
-//   db.query(q, (err, result) => {
-//     if (err) {
-//       console.error('Database query error:', err.message);
-//       res.status(500).json({ error: 'Database query error' });
-//     } else {
-//       res.json({ data: result });
-//     }
-//   });
-// });
-
-// app.post('/create', (req, res) => {
-//   const { title, description } = req.body;
-//   const q = 'INSERT INTO notes (`title`, `description`) VALUES (?, ?)';
-//   db.query(q, [title, description], (err, result) => {
-//     if (err) {
-//       console.error('Database query error:', err.message);
-//       res.status(500).json({ error: 'Database query error' });
-//     } else {
-//       console.log(result);
-//       res.json({ message: 'Data inserted into the database', data: result });
-//     }
-//   });
-// });
-
-//////-------------------------------
-
 app.post('/create', (req, res) => {
   const { title, description } = req.body;
   const userId = req.body.userId;
