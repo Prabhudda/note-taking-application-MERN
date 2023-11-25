@@ -147,7 +147,7 @@ function Home() {
           <p className='lead'>Start your journey with Note.Hub</p>
         </div>
       )}
-      {data && currentUser && (
+      {data.length <= 0 && currentUser && (
         <div className='text-center home-text'>
           <div>
             <h2 className='text-center'>Welcome, {currentUser}!</h2>
