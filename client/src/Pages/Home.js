@@ -1,18 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NoteContext } from '../Context.js';
 import { FaTrash, FaEdit } from 'react-icons/fa'; // Example with Font Awesome icons
-
+import Navbar from '../Components/Navbar.js';
 function Home() {
-  const {
-    data,
-    getData,
-    handleLogout,
-    deleteUserAccount,
-    currentUser,
-    onDelete,
-    userId,
-  } = useContext(NoteContext);
+  const { data, getData, currentUser, onDelete, userId } =
+    useContext(NoteContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,84 +17,14 @@ function Home() {
     fetchData();
   }, [userId, currentUser, getData]);
 
-  const [display, setDisplay] = useState('none');
-
-  const displayMenu = () => {
-    let d = display === 'none' ? 'block' : 'none';
-    setDisplay(d);
-  };
-
   return (
-    <div className=''>
+    <div className='position-relative'>
+      <Navbar />
+      {currentUser && !data.length <= 0 && (
+        <h4 className='text-center mt-4'>Quick Notes</h4>
+      )}
       <div className='container position-relative'>
-        <div className='mt-5  d-flex justify-content-between align-items-center'>
-          <div className=''>
-            <h2 className=''>Note.Hub</h2>
-          </div>
-
-          <div className='d-flex'>
-            {currentUser && (
-              <div className=''>
-                <Link to='/create' className='btn btn-outline-primary'>
-                  Create Note
-                </Link>
-              </div>
-            )}
-
-            <div className=''>
-              {currentUser === null ? (
-                <Link to='/login' className='btn btn-outline-success'>
-                  Login
-                </Link>
-              ) : (
-                ''
-              )}
-            </div>
-            <div className='mx-2 d-flex justify-content-center align-items-center'>
-              {currentUser ? (
-                <div
-                  title='profile'
-                  className='profile-picture'
-                  onClick={displayMenu}
-                >
-                  <Link className='' style={{ textDecoration: 'none' }}>
-                    {currentUser.charAt(0).toUpperCase()}
-                  </Link>
-                  <div
-                    className='dropdown position-absolute p-2'
-                    style={{ display: `${display}` }}
-                  >
-                    <Link
-                      to='/login'
-                      onClick={handleLogout}
-                      className='w-100 btn btn-outline-danger py-0 py-1'
-                      style={{ fontSize: '13px' }}
-                    >
-                      Logout
-                    </Link>
-
-                    <button
-                      onClick={deleteUserAccount}
-                      className='w-100 btn btn-outline-danger py-0 mt-2 py-1'
-                      style={{ fontSize: '13px' }}
-                    >
-                      Delete Account
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  to='/register '
-                  className='btn btn-outline-primary rounded-pill '
-                >
-                  Register
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className='row my-5 justify-content-center'>
+        <div className='row my-4 justify-content-center'>
           {!data.length <= 0 &&
             data.map((item) => (
               <div
@@ -137,6 +60,7 @@ function Home() {
             ))}
         </div>
       </div>
+
       {!currentUser && (
         <div className='text-center home-text'>
           <h2 className='text-center'>Your Digital Notepad</h2>
@@ -150,7 +74,15 @@ function Home() {
       {data.length <= 0 && currentUser && (
         <div className='text-center home-text'>
           <div>
-            <h2 className='text-center'>Welcome, {currentUser}!</h2>
+            <h2 className='text-center'>
+              Welcome,{' '}
+              {currentUser
+                .toString()
+                .split(' ')
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')}
+              !
+            </h2>
             <p className='lead mt-3'>
               It looks like you haven't created any notes yet. Start capturing
               your thoughts and ideas!

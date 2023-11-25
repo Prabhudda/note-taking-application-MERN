@@ -19,7 +19,7 @@ const Login = () => {
         style={{ height: '100vh', width: '100%' }}
       >
         <div className='form-box'>
-          <h2 className='mb-5'>Login</h2>
+          <h2 className='mb-3'>Login</h2>
           <form onSubmit={handleLogin} autoComplete='true'>
             <div className='mb-3'>
               <label htmlFor='username' className='form-label'>

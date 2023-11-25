@@ -12,7 +12,7 @@ function Create() {
         style={{ height: '100vh', width: '100%' }}
       >
         <div className='form-box'>
-          <h2 className='pt-5 mb-5'>Create Note</h2>
+          <h2 className='pt-5 mb-3'>Create Note</h2>
           <form onSubmit={handleSubmit} className=''>
             <div className='mb-3'>
               <label htmlFor='title' className='form-label'>

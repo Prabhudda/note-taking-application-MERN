@@ -30,6 +30,22 @@ const Register = () => {
         error.response?.data.message || 'Registration failed. Please try again.'
       );
     }
+
+    // try {
+    //   const response = await axios.post('http://localhost:8080/register', {
+    //     username,
+    //     email,
+    //     password,
+    //   });
+
+    //   setError(response.data.message);
+    // } catch (error) {
+    //   console.error('Registration failed:', error.message);
+
+    //   setError(
+    //     error.response?.data.message || 'Registration failed. Please try again.'
+    //   );
+    // }
   };
 
   return (
@@ -39,7 +55,7 @@ const Register = () => {
         style={{ height: '100vh', width: '100%' }}
       >
         <div className='form-box'>
-          <h2 className='mb-5'>Register</h2>
+          <h2 className='mb-3'>Register</h2>
           <form onSubmit={handleRegister}>
             <div className='mb-3'>
               <label htmlFor='username' className='form-label'>

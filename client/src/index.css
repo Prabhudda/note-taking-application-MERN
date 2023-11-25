@@ -16,25 +16,14 @@ code {
   width: 150px;
   height: auto;
   position: absolute;
-  background-color:rgb(247, 228, 228);
+  background-color:rgb(255, 255, 255);
   right: 20px;
   top: 50px;
-z-index: 1;
-border-radius: 5px;
-border: 1px solid red;
-}
-.dropdown::before{
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 15px;
-  top: -10px;
-  right: 8px;
-  border-top: 1px solid red;
-  border-top-left-radius: 150px;
-  border-top-right-radius: 150px;
-  background-color: rgb(247, 228, 228);
-
+  z-index: 1;
+  border-radius: 5px;
+  border: 1px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index:5;
 }
 .profile-picture{
   border-radius: 50% !important;
@@ -54,6 +43,20 @@ padding: 20px;
 .form-box{
 width: 50%;
 }
+
+.plusToCreate{
+  width: 60px;
+  height:60px;
+  border-radius: 50%;
+  position:fixed;
+  bottom: 10% !important;
+  right: 20px;
+  text-decoration: none;
+  z-index: 20;
+  background-color: #007bff;
+  color: #fff;
+}
+
 @media (max-width:900px) {
   .form-box{
     width: 100%;

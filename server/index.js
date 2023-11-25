@@ -14,6 +14,10 @@ app.use(
   cors({
     origin: 'https://note-taking-application-frontend.onrender.com',
   })
+
+  // cors({
+  //   origin: 'http://localhost:3000',
+  // })
 );
 app.use(express.json());
 app.use(cookie());

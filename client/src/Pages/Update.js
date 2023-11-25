@@ -27,6 +27,9 @@ function Update() {
       `https://note-taking-application-backend-k82k.onrender.com/update/${ID}`,
       note
     );
+
+    // const res = await axios.put(`http://localhost:8080/update/${ID}`, note);
+
     // console.log(res);
     navigation('/');
   };
@@ -38,7 +41,7 @@ function Update() {
         style={{ height: '100vh', width: '100%' }}
       >
         <div className='form-box'>
-          <h2 className='mb-5'>Update Note</h2>
+          <h2 className='mb-3'>Update Note</h2>
           <form onSubmit={handleUpdate}>
             <div className='mb-3'>
               <label htmlFor='title' className='form-label'>

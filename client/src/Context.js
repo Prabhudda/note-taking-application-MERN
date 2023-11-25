@@ -34,6 +34,19 @@ function NoteProvider({ children }) {
       console.error('Error fetching data:', error);
       setIsLoading(false);
     }
+
+    // try {
+    //   const response = await axios.get('http://localhost:8080', {
+    //     headers: {
+    //       authorization: userId,
+    //     },
+    //   });
+    //   setData(response.data.data);
+    //   setIsLoading(false);
+    // } catch (error) {
+    //   console.error('Error fetching data:', error);
+    //   setIsLoading(false);
+    // }
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +67,13 @@ function NoteProvider({ children }) {
     } catch (error) {
       console.error('Error deleting data:', error);
     }
+
+    // try {
+    //   await axios.delete(`http://localhost:8080/delete/${id}`);
+    //   setData((prevData) => prevData.filter((item) => item.id !== id));
+    // } catch (error) {
+    //   console.error('Error deleting data:', error);
+    // }
   };
   const deleteUserAccount = async () => {
     try {
@@ -68,6 +88,17 @@ function NoteProvider({ children }) {
     } catch (err) {
       console.log(err);
     }
+
+    // try {
+    //   await axios.delete(`http://localhost:8080/delete/account/${userId}`);
+    //   Cookies.remove('token');
+    //   localStorage.removeItem('username');
+    //   localStorage.removeItem('userId');
+    //   setCurrentUser(null);
+    //   navigate('/register');
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   const handleInputChange = (e) => {
@@ -88,6 +119,16 @@ function NoteProvider({ children }) {
     } catch (error) {
       console.error('Error creating note:', error);
     }
+
+    // try {
+    //   const response = await axios.post('http://localhost:8080/create', note);
+    //   console.log(response.data);
+    //   setNote({ id: null, title: '', description: '', userId: userId });
+    //   await getData();
+    //   navigate('/');
+    // } catch (error) {
+    //   console.error('Error creating note:', error);
+    // }
   };
 
   const [error, setError] = useState('');
@@ -122,13 +163,41 @@ function NoteProvider({ children }) {
         await getData();
 
         navigate('/');
-        // console.log(JSON.parse(localStorage.getItem('username')));
-
-        // console.log('jwt:', response.data.token);
       }
     } catch (error) {
       setError('Please enter the valid credentials again.');
     }
+
+    // try {
+    //   const response = await axios.post('http://localhost:8080/login', {
+    //     username,
+    //     password,
+    //   });
+    //   if (response.data.error) {
+    //     setError(response.data.error);
+    //   } else {
+    //     setError('');
+
+    //     console.log('Logged in successfully:', response.data);
+    //     setCurrentUser(response.data.user.username);
+    //     setUserId(response.data.user.id);
+
+    //     Cookies.set('token', response.data.token, {
+    //       expires: 1,
+    //     });
+    //     localStorage.setItem(
+    //       'username',
+    //       JSON.stringify(response.data.user.username)
+    //     );
+    //     localStorage.setItem('userId', JSON.stringify(response.data.user.id));
+
+    //     await getData();
+
+    //     navigate('/');
+    //   }
+    // } catch (error) {
+    //   setError('Please enter the valid credentials again.');
+    // }
   };
 
   const handleLogout = () => {
