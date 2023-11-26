@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation, Routes, Route, Link } from 'react-router-dom';
 import Home from './Pages/Home';
 import Update from './Pages/Update';
@@ -6,7 +6,7 @@ import Create from './Pages/Create';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import { BsPlus } from 'react-icons/bs';
-import { NoteContext } from '../Context.js';
+import { NoteContext } from './Context.js';
 
 function App() {
   const location = useLocation();
