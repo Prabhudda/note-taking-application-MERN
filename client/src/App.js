@@ -14,7 +14,7 @@ function App() {
   return (
     <div className='container'>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' exact element={<Home />} />
         <Route path='/create' element={<Create />} />
         <Route path='/update/:id' element={<Update />} />
         <Route path='/login' element={<Login />} />
