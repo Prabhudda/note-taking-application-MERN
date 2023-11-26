@@ -41,6 +41,25 @@ db.getConnection((err) => {
   }
 });
 
+// const verifyToken = (req, res, next) => {
+//   const token = req.cookies.token;
+
+//   if (!token) {
+//     return res.status(401).json({ error: 'Unauthorized: Missing token' });
+//   }
+
+//   jwt.verify(token, process.env.JWT_KEY, (err, result) => {
+//     if (err) {
+//       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+//     }
+
+//     req.username = result.username;
+//     next();
+//   });
+// };
+
+// app.use(verifyToken);
+
 app.post('/create', (req, res) => {
   const { title, description } = req.body;
   const userId = req.body.userId;
