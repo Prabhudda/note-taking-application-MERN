@@ -11,8 +11,11 @@ let PORT = process.env.PORT || 4001;
 const app = express();
 
 app.use(
+  // cors({
+  //   origin: 'https://note-taking-application-frontend.onrender.com',
+  // })
   cors({
-    origin: 'https://note-taking-application-frontend.onrender.com',
+    origin: 'https://note-hub-application.netlify.app',
   })
 
   // cors({
