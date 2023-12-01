@@ -1,0 +1,24 @@
+.Navbar-main-container{
+    background-color: #282A3A;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.dropdown{
+    width: 150px;
+    height: auto;
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    right: 0px;
+    top: 50px;
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index:5;
+  }
+  
+  .navbar-input{
+    width: 40%;
+  }
+  input[type='search'].custom-input {
+    cursor: pointer;
+  }

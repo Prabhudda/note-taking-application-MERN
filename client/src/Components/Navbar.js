@@ -4,8 +4,9 @@ import { NoteContext } from '../Context.js';
 import { BsPerson, BsTrash, BsPlus } from 'react-icons/bs';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLogout } from 'react-icons/ai';
+import './Navbar.css';
 function Navbar() {
-  const { handleLogout, deleteUserAccount, currentUser } =
+  const { handleLogout, search, setSearch, deleteUserAccount, currentUser } =
     useContext(NoteContext);
 
   const [display, setDisplay] = useState('none');
@@ -16,13 +17,25 @@ function Navbar() {
   };
 
   return (
-    <div className='container position-relative'>
-      <div className='mt-5  d-flex justify-content-between align-items-center'>
-        <div className='d-flex justify-content-center align-items-center'>
+    <div className='Navbar-main-container container-fluid fixed-top text-light d-flex justify-content-center align-items-center py-1'>
+      <div className='container mt-0 py-2 d-flex justify-content-between align-items-center'>
+        <div className='col-lg-3 d-flex justify-content-center align-items-center'>
           <h2 className='m-0'>Note.Hub</h2>
         </div>
+        {currentUser && (
+          <div className='col-lg-5 form-box navbar-input d-lg-flex d-none'>
+            <input
+              type='search'
+              className='form-control custom-input '
+              placeholder='search note'
+              value={search}
+              required
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        )}
 
-        <div className='d-flex'>
+        <div className='col-lg-3 d-flex'>
           {currentUser && (
             <div className='d-md-block d-none'>
               <Link
@@ -44,7 +57,7 @@ function Navbar() {
               ''
             )}
           </div>
-          <div className='mx-2 d-flex justify-content-center align-items-center'>
+          <div className='mx-2 position-relative d-flex justify-content-center align-items-center'>
             {currentUser ? (
               <div className=''>
                 <div onClick={displayMenu}>
@@ -53,21 +66,11 @@ function Navbar() {
                     style={{ textDecoration: 'none' }}
                   >
                     <BsPerson size={20} className='' />
-                    <div className='mx-1'>
-                      <p className='m-0'>
-                        {currentUser
-                          .toString()
-                          .split(' ')[0]
-                          .charAt(0)
-                          .toUpperCase() +
-                          currentUser.toString().split(' ')[0].slice(1)}
-                      </p>
-                    </div>
                     <div className=' d-flex justify-content-center align-items-center'>
                       {display === 'none' ? (
-                        <IoIosArrowUp />
-                      ) : (
                         <IoIosArrowDown />
+                      ) : (
+                        <IoIosArrowUp />
                       )}
                     </div>
                   </Link>
@@ -128,7 +131,6 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <hr></hr>
     </div>
   );
 }

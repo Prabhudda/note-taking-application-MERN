@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { NoteContext } from '..//Context.js';
 import axios from 'axios';
+import Navbar from '../Components/Navbar.js';
 
 function Update() {
   const { handleInputChange, note, data, setNote } = useContext(NoteContext);
@@ -35,12 +36,10 @@ function Update() {
   };
 
   return (
-    <div className='container'>
-      <div
-        className='d-flex justify-content-center align-items-center'
-        style={{ height: '100vh', width: '100%' }}
-      >
-        <div className='form-box'>
+    <div className='container position-relative'>
+      <Navbar />
+      <div className='d-flex justify-content-center align-items-center vh-100'>
+        <div className='create-note-col col-lg-6 col-sm-10 col-12 rounded p-md-5 p-4 mx-auto form-box mt-5'>
           <h2 className='mb-3'>Update Note</h2>
           <form onSubmit={handleUpdate}>
             <div className='mb-3'>
@@ -49,12 +48,14 @@ function Update() {
               </label>
               <input
                 type='text'
-                className='form-control'
+                className='form-control custom-input'
                 id='title'
                 name='title'
                 value={(note && note.title) || ''}
                 onChange={handleInputChange}
                 required
+                placeholder='Enter your title ...'
+                autoFocus
               />
             </div>
             <div className='mb-3'>
@@ -62,9 +63,10 @@ function Update() {
                 Description
               </label>
               <textarea
-                className='form-control'
+                className='form-control custom-input'
                 id='description'
                 name='description'
+                placeholder='Enter your text ...'
                 onChange={handleInputChange}
                 value={(note && note.description) || ''}
                 rows='4'

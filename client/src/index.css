@@ -1,48 +1,39 @@
 body {
-  margin: 0;
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  
+ /* dark-theme  */
+/* background-color: #202124 !important;
+color:#ffff !important; */
+
+
+/* light-theme */
+/* background-color:#ffff !important;
+color:#202124 !important; */
 }
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.dropdown{
-  width: auto;
-  height: auto;
-  position: absolute;
-  background-color:rgb(255, 255, 255);
-  right: 20px;
-  top: 50px;
-  z-index: 1;
-  border-radius: 5px;
-  border: 1px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index:5;
+body::-webkit-scrollbar {
+  width: 0px;
 }
+/* navbar */
+
 .profile-picture{
   border-radius: 50% !important;
   border:1px solid #0d6efd;
   padding: 5px 11px;
   cursor: pointer;
 }
-.home-text{
-height:45vh;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-padding: 20px;
-}
 
-.form-box{
-width: 50%;
-}
 
 .plusToCreate{
   width: 60px;
@@ -62,3 +53,6 @@ width: 50%;
     width: 100%;
     }
 }
+/* --bg-color-dark: #202124;
+--secondary-accent-color-dark: #606060;
+--button-color-dark: #909090; */

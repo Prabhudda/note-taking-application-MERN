@@ -1,0 +1,19 @@
+.create-main-container{
+    height: 80vh !important;
+/* dark-theme  */
+/* background-color: #202124; */
+color:#ffff;
+/* light-theme */
+/* background-color:#ffff;
+color:#202124; */
+}
+.create-note-col{
+    height: 455px;
+      /* dark-theme */
+      background-color:#282A3A;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: #ffff;
+      /* light-theme */
+      /* background-color:#ffff;
+      color: #202124; */
+  }

@@ -14,6 +14,7 @@ app.use(
   // cors({
   //   origin: 'https://note-taking-application-frontend.onrender.com',
   // })
+
   cors({
     origin: 'https://note-hub-application.netlify.app',
   })
@@ -64,7 +65,7 @@ app.post('/create', (req, res) => {
   const { title, description } = req.body;
   const userId = req.body.userId;
   const q =
-    'INSERT INTO notes (`title`, `description`, `userId`) VALUES (?, ?, ?)';
+    'INSERT INTO notes (`title`, `description`, `userId`,`createdDate`) VALUES (?, ?, ?,CURDATE())';
   db.query(q, [title, description, userId], (err, result) => {
     if (err) {
       console.error('Database query error:', err.message);
@@ -140,9 +141,9 @@ app.post('/register', async (req, res) => {
       saltRounds
     );
 
-    const q = 'SELECT * FROM users WHERE username=? OR email=?';
+    const q = 'SELECT * FROM users WHERE email=?';
 
-    db.query(q, [username, email], (err, result) => {
+    db.query(q, [email], (err, result) => {
       if (err) {
         console.error('Database query error:', err.message);
         return res
@@ -153,7 +154,7 @@ app.post('/register', async (req, res) => {
       if (result.length > 0) {
         return res.json({
           message:
-            "You're already registered with your Email ! , please proceed to login.",
+            "You're already registered with your Email ! , please login.",
         });
       }
 

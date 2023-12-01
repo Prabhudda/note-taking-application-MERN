@@ -9,6 +9,7 @@ function NoteProvider({ children }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [note, setNote] = useState(null);
+
   const [userId, setUserId] = useState(
     JSON.parse(localStorage.getItem('userId') || null)
   );
@@ -175,6 +176,10 @@ function NoteProvider({ children }) {
     //   });
     //   if (response.data.error) {
     //     setError(response.data.error);
+
+    //     setTimeout(() => {
+    //       setError(null);
+    //     }, 4000);
     //   } else {
     //     setError('');
 
@@ -197,6 +202,9 @@ function NoteProvider({ children }) {
     //   }
     // } catch (error) {
     //   setError('Please enter the valid credentials again.');
+    //   setTimeout(() => {
+    //     setError(null);
+    //   }, 4000);
     // }
   };
 
@@ -210,6 +218,8 @@ function NoteProvider({ children }) {
   setTimeout(() => {
     handleLogout();
   }, 24 * 60 * 60 * 1000);
+
+  const [search, setSearch] = useState('');
 
   return (
     <NoteContext.Provider
@@ -228,6 +238,8 @@ function NoteProvider({ children }) {
         handleLogout,
         userId,
         deleteUserAccount,
+        setSearch,
+        search,
       }}
     >
       {children}

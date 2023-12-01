@@ -12,7 +12,7 @@ function App() {
   const location = useLocation();
   const { data, currentUser } = useContext(NoteContext);
   return (
-    <div className='container'>
+    <div className='bg-dark'>
       <Routes>
         <Route path='/' exact element={<Home />} />
         <Route path='/create' element={<Create />} />
