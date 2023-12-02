@@ -6,6 +6,10 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import path from 'path';
+
+const caFilePath = path.join('C:', 'Users', 'prabh', 'Downloads', 'ca.pem');
+
 dotenv.config();
 let PORT = process.env.PORT;
 
@@ -36,7 +40,7 @@ const db = mysql.createPool({
   waitForConnections: true,
   queueLimit: 0,
   ssl: {
-    ca: fs.readFileSync('C:\\Users\\prabh\\Downloads\\ca.pem'),
+    ca: fs.readFileSync(caFilePath),
     rejectUnauthorized: true,
   },
 });
