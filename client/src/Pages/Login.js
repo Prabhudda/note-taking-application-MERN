@@ -27,7 +27,7 @@ const Login = () => {
                 autoFocus
                 type='text'
                 className='form-control custom-input'
-                placeholder='email'
+                placeholder='Email'
                 id='email'
                 value={email}
                 required
