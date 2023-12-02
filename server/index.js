@@ -5,8 +5,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
+import fs from 'fs';
 dotenv.config();
-let PORT = process.env.PORT || 4001;
+let PORT = process.env.PORT;
 
 const app = express();
 
@@ -32,6 +33,12 @@ const db = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  waitForConnections: true,
+  queueLimit: 0,
+  ssl: {
+    ca: fs.readFileSync('C:\\Users\\prabh\\Downloads\\ca.pem'),
+    rejectUnauthorized: true,
+  },
 });
 
 db.getConnection((err) => {
