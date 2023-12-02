@@ -59,6 +59,7 @@ function Home() {
         <div className='container position-relative'>
           <div className='row my-1 justify-content-center'>
             {!data.length <= 0 &&
+              currentUser &&
               filteredNote.map((item) => (
                 <div className='col-lg-4 col-md-5 mt-3' key={item.id}>
                   <div className='note-box d-flex justify-content-between flex-column  p-3 m-2 flex-fill rounded'>
