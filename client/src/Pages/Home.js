@@ -11,6 +11,15 @@ function Home() {
     useContext(NoteContext);
   // const [text, setText] = useState(false);
   const [expandedNotes, setExpandedNotes] = useState([]);
+  const [filteredNote, setFiltredNote] = useState(data);
+
+  const filterNote = (search) => {
+    setFiltredNote(
+      data.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,93 +36,90 @@ function Home() {
       <Navbar />
       <div className='position-relative Home-main-container'>
         {currentUser && !data.length <= 0 && (
-          <div className='form-box container navbar-input d-lg-none d-block'>
-            <input
-              type='search'
-              className='form-control custom-input'
-              placeholder='search note'
-              value={search}
-              required
-              onChange={(e) => setSearch(e.target.value)}
-            />
+          <div>
+            <div className='form-box container navbar-input d-lg-none d-block'>
+              <input
+                type='search'
+                className='form-control custom-input'
+                placeholder='search note'
+                value={search}
+                required
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <h4 className='text-center mt-3'>
+              {filteredNote ? 'Quick Notes' : 'Note not found'}
+            </h4>
           </div>
-        )}
-
-        {currentUser && !data.length <= 0 && (
-          <h4 className='text-center mt-3'>Quick Notes</h4>
         )}
         <div className='container position-relative'>
           <div className='row my-1 justify-content-center'>
             {!data.length <= 0 &&
-              data
-                .filter((item) =>
-                  item.title.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((item) => (
-                  <div className='col-lg-4 col-md-5 mt-3' key={item.id}>
-                    <div className='note-box d-flex justify-content-between flex-column  p-3 m-2 flex-fill rounded'>
-                      <div>
-                        <div className='note-title'>
-                          <h6 className=''>{item.title.toUpperCase()}</h6>
-                          <hr></hr>
-                        </div>
-                        <p
-                          className='description lead'
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          {expandedNotes.includes(item.id)
-                            ? `${item.description}`
-                            : `${item.description.slice(0, 90)}`}
-                          {item.description.length > 150 && (
-                            <span
-                              className='read-more mx-1'
-                              onClick={() => {
-                                setExpandedNotes((prev) =>
-                                  prev.includes(item.id)
-                                    ? prev.filter((id) => id !== item.id)
-                                    : [...prev, item.id]
-                                );
-                              }}
-                              style={{ color: 'blue', cursor: 'pointer' }}
-                            >
-                              {expandedNotes.includes(item.id)
-                                ? ' read less'
-                                : ' read more'}
-                            </span>
-                          )}
-                        </p>
+              filteredNote.map((item) => (
+                <div className='col-lg-4 col-md-5 mt-3' key={item.id}>
+                  <div className='note-box d-flex justify-content-between flex-column  p-3 m-2 flex-fill rounded'>
+                    <div>
+                      <div className='note-title'>
+                        <h6 className=''>{item.title.toUpperCase()}</h6>
+                        <hr></hr>
                       </div>
-                      <div className=' d-flex justify-content-between align-items-center'>
-                        <p
-                          className='m-0 '
-                          style={{ fontSize: '15px', opacity: '50%' }}
-                        >
-                          {moment(item.createdDate).format('D/MM/YYYY')}
-                        </p>
-                        <div className='d-flex'>
-                          <div className=' text-center mx-1' title='Edit'>
-                            <Link
-                              to={`/update/${item.id}`}
-                              className='w-100 btn btn-outline-success px-2 py-1'
-                            >
-                              <FaEdit className='' />
-                            </Link>
-                          </div>
-                          <div className='mx-1' title='Delete'>
-                            <button
-                              className='btn btn-outline-danger px-2 py-1'
-                              onClick={() => onDelete(item.id)}
-                            >
-                              <FaTrash />
-                            </button>
-                          </div>
+                      <p
+                        className='description lead'
+                        style={{
+                          width: '100%',
+                        }}
+                      >
+                        {expandedNotes.includes(item.id)
+                          ? `${item.description}`
+                          : `${item.description.slice(0, 90)}`}
+                        {item.description.length > 150 && (
+                          <span
+                            className='read-more mx-1'
+                            onClick={() => {
+                              setExpandedNotes((prev) =>
+                                prev.includes(item.id)
+                                  ? prev.filter((id) => id !== item.id)
+                                  : [...prev, item.id]
+                              );
+                            }}
+                            style={{ color: 'blue', cursor: 'pointer' }}
+                          >
+                            {expandedNotes.includes(item.id)
+                              ? ' read less'
+                              : ' read more'}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    <div className=' d-flex justify-content-between align-items-center'>
+                      <p
+                        className='m-0 '
+                        style={{ fontSize: '15px', opacity: '50%' }}
+                      >
+                        {moment(item.createdDate).format('D/MM/YYYY')}
+                      </p>
+                      <div className='d-flex'>
+                        <div className=' text-center mx-1' title='Edit'>
+                          <Link
+                            to={`/update/${item.id}`}
+                            className='w-100 btn btn-outline-success px-2 py-1'
+                          >
+                            <FaEdit className='' />
+                          </Link>
+                        </div>
+                        <div className='mx-1' title='Delete'>
+                          <button
+                            className='btn btn-outline-danger px-2 py-1'
+                            onClick={() => onDelete(item.id)}
+                          >
+                            <FaTrash />
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
           </div>
         </div>
         {!currentUser && (
