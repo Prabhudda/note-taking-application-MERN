@@ -13,13 +13,17 @@ function Home() {
   const [expandedNotes, setExpandedNotes] = useState([]);
   const [filteredNote, setFiltredNote] = useState(data);
 
-  const filterNote = (search) => {
+  const filterNote = () => {
     setFiltredNote(
       data.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
       )
     );
   };
+
+  useEffect(() => {
+    filterNote();
+  }, [search, data]);
 
   useEffect(() => {
     const fetchData = async () => {
