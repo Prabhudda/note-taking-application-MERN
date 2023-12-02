@@ -6,9 +6,8 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import path from 'path';
 
-const caFilePath = path.join('C:', 'Users', 'prabh', 'Downloads', 'ca.pem');
+const caFilePath = './ca.pem';
 
 dotenv.config();
 let PORT = process.env.PORT;
