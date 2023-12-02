@@ -52,7 +52,7 @@ function Home() {
               />
             </div>
             <h4 className='text-center mt-3'>
-              {filteredNote ? 'Quick Notes' : 'Note not found'}
+              {filteredNote.length > 0 ? 'Quick Notes' : 'Note not found'}
             </h4>
           </div>
         )}
