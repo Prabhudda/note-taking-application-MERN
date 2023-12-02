@@ -5,9 +5,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie-parser';
 import dotenv from 'dotenv';
-import fs from 'fs';
-
-const caFilePath = './ca.pem';
 
 dotenv.config();
 let PORT = process.env.PORT;
@@ -31,21 +28,14 @@ app.use(express.json());
 app.use(cookie());
 
 const db = mysql.createPool({
-  // connectionLimit: 30,
+  connectionLimit: 30,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   waitForConnections: true,
   queueLimit: 0,
-  connectionLimit: 1000,
-  connectTimeout: 60 * 60 * 1000,
-  acquireTimeout: 60 * 60 * 1000,
-  timeout: 60 * 60 * 1000,
-  ssl: {
-    ca: fs.readFileSync(caFilePath),
-    rejectUnauthorized: true,
-  },
+  // connectionLimit: 50,
 });
 
 db.getConnection((err) => {
