@@ -27,8 +27,8 @@ const Login = () => {
                 autoFocus
                 type='text'
                 className='form-control custom-input'
-                placeholder='Username'
-                id='username'
+                placeholder='email'
+                id='email'
                 value={email}
                 required
                 onChange={(e) => setEmail(e.target.value)}
@@ -54,7 +54,7 @@ const Login = () => {
                 Register
               </Link>
             </p>
-            {error && <p className='text-center text-light'>{error}</p>}
+            {error && <p className='text-center text-primary'>{error}</p>}
           </form>
         </div>
       </div>

@@ -89,7 +89,7 @@ const Register = () => {
                 Login
               </Link>
             </p>
-            {error && <p className='text-light text-center'>{error}</p>}
+            {error && <p className='text-primary text-center'>{error}</p>}
           </form>
         </div>
       </div>

@@ -145,9 +145,11 @@ function NoteProvider({ children }) {
       );
       if (response.data.error) {
         setError(response.data.error);
+        setTimeout(() => {
+          setError(null);
+        }, 4000);
       } else {
         setError('');
-
         console.log('Logged in successfully:', response.data);
         setCurrentUser(response.data.user.username);
         // setUserEmail(response.data.user.email);
@@ -168,6 +170,9 @@ function NoteProvider({ children }) {
       }
     } catch (error) {
       setError('Please enter the valid credentials again.');
+      setTimeout(() => {
+        setError(null);
+      }, 4000);
     }
 
     // try {
