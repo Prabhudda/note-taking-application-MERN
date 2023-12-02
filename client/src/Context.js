@@ -13,11 +13,11 @@ function NoteProvider({ children }) {
   const [userId, setUserId] = useState(
     JSON.parse(localStorage.getItem('userId') || null)
   );
-
-  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('username') || null)
   );
+
+  const navigate = useNavigate();
 
   const getData = async () => {
     try {
@@ -134,12 +134,12 @@ function NoteProvider({ children }) {
 
   const [error, setError] = useState('');
 
-  const Login = async (username, password) => {
+  const Login = async (email, password) => {
     try {
       const response = await axios.post(
         'https://note-taking-application-backend-k82k.onrender.com/login',
         {
-          username,
+          email,
           password,
         }
       );
@@ -150,6 +150,7 @@ function NoteProvider({ children }) {
 
         console.log('Logged in successfully:', response.data);
         setCurrentUser(response.data.user.username);
+        // setUserEmail(response.data.user.email);
         setUserId(response.data.user.id);
 
         Cookies.set('token', response.data.token, {

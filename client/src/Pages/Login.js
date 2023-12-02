@@ -5,14 +5,14 @@ import './Login.css';
 import Navbar from '../Components/Navbar.js';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   const { Login, error } = useContext(NoteContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    Login(username, password);
+    Login(email, password);
   };
 
   return (
@@ -29,9 +29,9 @@ const Login = () => {
                 className='form-control custom-input'
                 placeholder='Username'
                 id='username'
-                value={username}
+                value={email}
                 required
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className='mb-3'>

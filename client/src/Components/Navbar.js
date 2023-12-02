@@ -20,9 +20,13 @@ function Navbar() {
     <div className='Navbar-main-container container-fluid fixed-top text-light d-flex justify-content-center align-items-center py-1'>
       <div className='container mt-0 py-2 d-flex justify-content-between align-items-center'>
         <div className='col-lg-3 d-flex justify-content-start align-items-center'>
-          <h2 className='m-0'>Note.Hub</h2>
+          <h2 className='m-0'>
+            <Link className='text-light' style={{ textDecoration: 'none' }}>
+              Note.Hub
+            </Link>
+          </h2>
         </div>
-        {currentUser && (
+        {currentUser && !data.length <= 0 && (
           <div className='col-lg-5 form-box navbar-input d-lg-flex d-none'>
             <input
               type='search'

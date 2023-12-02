@@ -186,10 +186,10 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const q = 'SELECT * FROM users WHERE username=?';
+    const { email, password } = req.body;
+    const q = 'SELECT * FROM users WHERE email=?';
 
-    db.query(q, [username], async (err, result) => {
+    db.query(q, [email], async (err, result) => {
       if (err) {
         console.error('Database query error:', err.message);
         return res
@@ -205,7 +205,7 @@ app.post('/login', async (req, res) => {
 
         if (comparePassword) {
           let { password, ...user } = result[0];
-          const token = jwt.sign({ username }, process.env.JWT_KEY, {
+          const token = jwt.sign({ email }, process.env.JWT_KEY, {
             expiresIn: '1d',
           });
           res.cookie('token', token, {

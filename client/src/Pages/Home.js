@@ -26,16 +26,19 @@ function Home() {
     <div>
       <Navbar />
       <div className='position-relative Home-main-container'>
-        <div className='form-box container navbar-input d-lg-none d-block'>
-          <input
-            type='search'
-            className='form-control mx-2 custom-input'
-            placeholder='search note'
-            value={search}
-            required
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
+        {currentUser && !data.length <= 0 && (
+          <div className='form-box container navbar-input d-lg-none d-block'>
+            <input
+              type='search'
+              className='form-control custom-input'
+              placeholder='search note'
+              value={search}
+              required
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        )}
+
         {currentUser && !data.length <= 0 && (
           <h4 className='text-center mt-3'>Quick Notes</h4>
         )}
