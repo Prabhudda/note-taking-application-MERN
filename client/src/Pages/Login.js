@@ -5,7 +5,7 @@ import './Login.css';
 import Navbar from '../Components/Navbar.js';
 
 const Login = () => {
-  // const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
   const { Login, error } = useContext(NoteContext);

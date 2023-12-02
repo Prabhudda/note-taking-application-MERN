@@ -6,9 +6,14 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { AiOutlineLogout } from 'react-icons/ai';
 import './Navbar.css';
 function Navbar() {
-  const { handleLogout, search, setSearch, deleteUserAccount, currentUser } =
-    useContext(NoteContext);
-
+  const {
+    handleLogout,
+    search,
+    data,
+    setSearch,
+    deleteUserAccount,
+    currentUser,
+  } = useContext(NoteContext);
   const [display, setDisplay] = useState('none');
 
   const displayMenu = () => {
