@@ -51,9 +51,14 @@ function Home() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <h4 className='text-center mt-3'>
-              {filteredNote.length > 0 ? 'Quick Notes' : 'Note not found'}
-            </h4>
+            <h4 className='text-center mt-3'>Quick Notes</h4>
+            {filteredNote.length > 0 ? (
+              <h4 className='text-center mt-3'>Quick Notes</h4>
+            ) : (
+              <p className='text-center mt-3'>
+                No notes found. Start creating now!
+              </p>
+            )}
           </div>
         )}
         <div className='container position-relative'>
