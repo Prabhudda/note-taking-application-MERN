@@ -29,7 +29,7 @@ function Home() {
         <div className='form-box container navbar-input d-lg-none d-block'>
           <input
             type='search'
-            className='form-control custom-input'
+            className='form-control mx-2 custom-input'
             placeholder='search note'
             value={search}
             required
@@ -62,7 +62,7 @@ function Home() {
                         >
                           {expandedNotes.includes(item.id)
                             ? `${item.description}`
-                            : `${item.description.slice(0, 80)}`}
+                            : `${item.description.slice(0, 90)}`}
                           {item.description.length > 150 && (
                             <span
                               className='read-more mx-1'

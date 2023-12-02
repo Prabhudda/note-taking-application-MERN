@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <div className='Navbar-main-container container-fluid fixed-top text-light d-flex justify-content-center align-items-center py-1'>
       <div className='container mt-0 py-2 d-flex justify-content-between align-items-center'>
-        <div className='col-lg-3 d-flex justify-content-center align-items-center'>
+        <div className='col-lg-3 d-flex justify-content-start align-items-center'>
           <h2 className='m-0'>Note.Hub</h2>
         </div>
         {currentUser && (
@@ -35,7 +35,7 @@ function Navbar() {
           </div>
         )}
 
-        <div className='col-lg-3 d-flex'>
+        <div className='col-lg-3 d-flex justify-content-end align-items-center'>
           {currentUser && (
             <div className='d-md-block d-none'>
               <Link

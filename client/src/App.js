@@ -25,7 +25,7 @@ function App() {
           to='/create'
           className='d-md-none d-block plusToCreate d-flex justify-content-center align-items-center'
         >
-          <BsPlus className='' size={25} />
+          <BsPlus className='' size={30} />
         </Link>
       )}
     </div>

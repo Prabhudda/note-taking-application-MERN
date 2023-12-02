@@ -54,7 +54,7 @@ const Login = () => {
                 Register
               </Link>
             </p>
-            {error && <p className='text-center text-danger'>{error}</p>}
+            {error && <p className='text-center text-light'>{error}</p>}
           </form>
         </div>
       </div>
