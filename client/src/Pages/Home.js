@@ -51,7 +51,6 @@ function Home() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <h4 className='text-center mt-3'>Quick Notes</h4>
             {filteredNote.length > 0 ? (
               <h4 className='text-center mt-3'>Quick Notes</h4>
             ) : (
