@@ -11,6 +11,8 @@ let PORT = process.env.PORT;
 
 const app = express();
 
+const currentDate = new Date().toISOString().split('T')[0];
+
 app.use(
   // cors({
   //   origin: 'https://note-taking-application-frontend.onrender.com',
@@ -69,8 +71,8 @@ app.post('/create', (req, res) => {
   const { title, description } = req.body;
   const userId = req.body.userId;
   const q =
-    'INSERT INTO notes (`title`, `description`, `userId`,`createdDate`) VALUES (?, ?, ?,CURDATE())';
-  db.query(q, [title, description, userId], (err, result) => {
+    'INSERT INTO notes (`title`, `description`, `userId`,`createdDate`) VALUES (?, ?, ?, ?)';
+  db.query(q, [title, description, userId, currentDate], (err, result) => {
     if (err) {
       console.error('Database query error:', err.message);
       res.status(500).json({ error: 'Database query error' });
