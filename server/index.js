@@ -14,14 +14,9 @@ const app = express();
 const currentDate = new Date().toISOString().split('T')[0];
 
 app.use(
-  // cors({
-  //   origin: 'https://note-taking-application-frontend.onrender.com',
-  // })
-
   cors({
     origin: 'https://note-hub-application.netlify.app',
   })
-
   // cors({
   //   origin: 'http://localhost:3000',
   // })
@@ -37,7 +32,6 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
   waitForConnections: true,
   queueLimit: 0,
-  // connectionLimit: 50,
 });
 
 db.getConnection((err) => {
@@ -47,25 +41,6 @@ db.getConnection((err) => {
     console.log('Connected to the database');
   }
 });
-
-// const verifyToken = (req, res, next) => {
-//   const token = req.cookies.token;
-
-//   if (!token) {
-//     return res.status(401).json({ error: 'Unauthorized: Missing token' });
-//   }
-
-//   jwt.verify(token, process.env.JWT_KEY, (err, result) => {
-//     if (err) {
-//       return res.status(401).json({ error: 'Unauthorized: Invalid token' });
-//     }
-
-//     req.username = result.username;
-//     next();
-//   });
-// };
-
-// app.use(verifyToken);
 
 app.post('/create', (req, res) => {
   const { title, description } = req.body;
@@ -228,6 +203,57 @@ app.post('/login', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// mongoDb - atlas
+// import mongoose from 'mongoose';
+// import User from './src/models/UserModel.js';
+// import Note from './src/models/NotesModel.js';
+
+// mongoose
+//   .connect(process.env.MONGODB_URL)
+//   .then(() => {
+//     console.log('Connected to MongoDB');
+//   })
+//   .catch((error) => {
+//     console.error('Error connecting to MongoDB:', error);
+//   });
+
+// app.post('/register', async (req, res) => {
+//   try {
+//     const { username, email, password } = req.body;
+
+//     // Check if the email already exists
+//     const existingUser = await User.findOne({ email });
+
+//     if (existingUser) {
+//       return res.json({
+//         message: "You're already registered with this email! Please login.",
+//       });
+//     }
+
+//     // Hash the password
+//     const saltRounds = 10;
+//     const hashedPassword = await bcrypt.hash(
+//       password + process.env.HASH_KEY,
+//       saltRounds
+//     );
+
+//     // Create a new user document
+//     const newUser = await User.create({
+//       username,
+//       email,
+//       password: hashedPassword,
+//     });
+
+//     return res.json({
+//       message: 'User registered successfully! Please proceed to login.',
+//       data: newUser,
+//     });
+//   } catch (error) {
+//     console.error('Error during user registration:', error.message);
+//     return res.status(500).json({ error: error.message });
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
