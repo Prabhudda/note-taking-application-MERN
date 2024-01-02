@@ -14,12 +14,12 @@ const app = express();
 const currentDate = new Date().toISOString().split('T')[0];
 
 app.use(
-  cors({
-    origin: 'https://note-hub-application.netlify.app',
-  })
   // cors({
-  //   origin: 'http://localhost:3000',
+  //   origin: 'https://note-hub-application.netlify.app',
   // })
+  cors({
+    origin: 'http://localhost:3000',
+  })
 );
 app.use(express.json());
 app.use(cookie());
