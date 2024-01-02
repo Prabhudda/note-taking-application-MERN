@@ -14,12 +14,12 @@ const app = express();
 const currentDate = new Date().toISOString().split('T')[0];
 
 app.use(
-  // cors({
-  //   origin: 'https://note-hub-application.netlify.app',
-  // })
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://note-hub-application.netlify.app',
   })
+  // cors({
+  //   origin: 'http://localhost:3000',
+  // })
 );
 app.use(express.json());
 app.use(cookie());
@@ -136,6 +136,7 @@ app.post('/register', async (req, res) => {
         return res.json({
           message:
             "You're already registered with your Email ! , please login.",
+          loading: false,
         });
       }
 
@@ -151,6 +152,7 @@ app.post('/register', async (req, res) => {
 
         return res.json({
           message: 'User registered successfully ! Please proceed to login.',
+          loading: false,
           data: { result },
         });
       });

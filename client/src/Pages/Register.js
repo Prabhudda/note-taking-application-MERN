@@ -13,6 +13,8 @@ const Register = () => {
 
   const [error, setError] = useState(null);
 
+  const [loading, setLoading] = useState();
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -25,7 +27,7 @@ const Register = () => {
           password,
         }
       );
-
+      setLoading(response.data.loading);
       setError(response.data.message);
 
       setTimeout(() => {
@@ -80,8 +82,12 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type='submit' className='btn btn-outline-primary w-100'>
-              Register
+            <button
+              type='submit'
+              onClick={() => setLoading(true)}
+              className='btn btn-outline-primary w-100'
+            >
+              {loading ? 'Loading...' : 'Register'}
             </button>
             <p className='mt-3 text-center'>
               If you have an account,
