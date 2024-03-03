@@ -10,7 +10,7 @@ function Update() {
   const ID = location.pathname.split('/')[2].trim();
   const navigation = useNavigate();
 
-  const noteData = data.find((item) => item.id === parseInt(ID));
+  const noteData = data.find((item) => item._id === ID);
 
   useEffect(() => {
     if (noteData) {
@@ -20,18 +20,11 @@ function Update() {
         description: noteData.description || '',
       });
     }
-  }, [noteData, setNote]);
+  }, [noteData, setNote, note]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    // const res = await axios.put(
-    //   `https://note-taking-application-backend-k82k.onrender.com/update/${ID}`,
-    //   note
-    // );
-
-    const res = await axios.put(`http://localhost:8080/update/${ID}`, note);
-
-    // console.log(res);
+    await axios.put(`http://localhost:8080/update/${ID}`, note);
     navigation('/');
   };
 

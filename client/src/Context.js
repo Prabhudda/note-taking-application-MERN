@@ -10,9 +10,7 @@ function NoteProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [note, setNote] = useState(null);
 
-  const [userId, setUserId] = useState(
-    JSON.parse(localStorage.getItem('userId') || null)
-  );
+  const [userId, setUserId] = useState(localStorage.getItem('userId') || null);
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('username') || null)
   );
@@ -20,22 +18,6 @@ function NoteProvider({ children }) {
   const navigate = useNavigate();
 
   const getData = async () => {
-    // try {
-    //   const response = await axios.get(
-    //     'https://note-taking-application-backend-k82k.onrender.com',
-    //     {
-    //       headers: {
-    //         authorization: userId,
-    //       },
-    //     }
-    //   );
-    //   setData(response.data.data);
-    //   setIsLoading(false);
-    // } catch (error) {
-    //   console.error('Error fetching data:', error);
-    //   setIsLoading(false);
-    // }
-
     try {
       const response = await axios.get('http://localhost:8080', {
         headers: {
@@ -60,15 +42,6 @@ function NoteProvider({ children }) {
   }, [userId, setData]);
 
   const onDelete = async (id) => {
-    // try {
-    //   await axios.delete(
-    //     `https://note-taking-application-backend-k82k.onrender.com/delete/${id}`
-    //   );
-    //   setData((prevData) => prevData.filter((item) => item.id !== id));
-    // } catch (error) {
-    //   console.error('Error deleting data:', error);
-    // }
-
     try {
       await axios.delete(`http://localhost:8080/delete/${id}`);
       setData((prevData) => prevData.filter((item) => item.id !== id));
@@ -76,20 +49,8 @@ function NoteProvider({ children }) {
       console.error('Error deleting data:', error);
     }
   };
-  const deleteUserAccount = async () => {
-    // try {
-    //   await axios.delete(
-    //     `https://note-taking-application-backend-k82k.onrender.com/delete/account/${userId}`
-    //   );
-    //   Cookies.remove('token');
-    //   localStorage.removeItem('username');
-    //   localStorage.removeItem('userId');
-    //   setCurrentUser(null);
-    //   navigate('/register');
-    // } catch (err) {
-    //   console.log(err);
-    // }
 
+  const deleteUserAccount = async () => {
     try {
       await axios.delete(`http://localhost:8080/delete/account/${userId}`);
       Cookies.remove('token');
@@ -108,19 +69,6 @@ function NoteProvider({ children }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(
-    //     'https://note-taking-application-backend-k82k.onrender.com/create',
-    //     note
-    //   );
-    //   console.log(response.data);
-    //   setNote({ id: null, title: '', description: '', userId: userId });
-    //   await getData();
-    //   navigate('/');
-    // } catch (error) {
-    //   console.error('Error creating note:', error);
-    // }
-
     try {
       const response = await axios.post('http://localhost:8080/create', note);
       console.log(response.data);
@@ -136,50 +84,11 @@ function NoteProvider({ children }) {
 
   const Login = async (email, password) => {
     try {
-      const response = await axios.post(
-        'https://note-taking-application-backend-k82k.onrender.com/login',
-        {
-          email,
-          password,
-        }
-      );
-      if (response.data.error) {
-        setError(response.data.error);
-        setTimeout(() => {
-          setError(null);
-        }, 4000);
-      } else {
-        setError('');
-        console.log('Logged in successfully:', response.data);
-        setCurrentUser(response.data.user.username);
-        // setUserEmail(response.data.user.email);
-        setUserId(response.data.user.id);
-
-        Cookies.set('token', response.data.token, {
-          expires: 1,
-        });
-        localStorage.setItem(
-          'username',
-          JSON.stringify(response.data.user.username)
-        );
-        localStorage.setItem('userId', JSON.stringify(response.data.user.id));
-
-        await getData();
-
-        navigate('/');
-      }
-    } catch (error) {
-      setError('Please enter the valid credentials again.');
-      setTimeout(() => {
-        setError(null);
-      }, 4000);
-    }
-
-    try {
       const response = await axios.post('http://localhost:8080/login', {
-        username,
+        email,
         password,
       });
+
       if (response.data.error) {
         setError(response.data.error);
 
@@ -193,14 +102,18 @@ function NoteProvider({ children }) {
         setCurrentUser(response.data.user.username);
         setUserId(response.data.user.id);
 
-        Cookies.set('token', response.data.token, {
+        Cookies.set('token', response.data.user.token, {
           expires: 1,
         });
-        localStorage.setItem(
-          'username',
-          JSON.stringify(response.data.user.username)
-        );
-        localStorage.setItem('userId', JSON.stringify(response.data.user.id));
+        if (response.data.user.username) {
+          localStorage.setItem(
+            'username',
+            JSON.stringify(response.data.user.username)
+          );
+        }
+        if (response.data.user.id) {
+          localStorage.setItem('userId', response.data.user.id);
+        }
 
         await getData();
 

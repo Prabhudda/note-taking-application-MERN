@@ -1,9 +1,19 @@
 import mongoose from 'mongoose';
 
 const NoteSchema = mongoose.Schema({
-  title: String,
-  description: String,
-  userId: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   createdDate: { type: Date, default: Date.now },
 });
 

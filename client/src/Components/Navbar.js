@@ -35,12 +35,12 @@ function Navbar() {
             </Link>
           </h2>
         </div>
-        {currentUser && !data.length <= 0 && (
+        {currentUser && !data.length <= 0 && data.length > 1 && (
           <div className='col-lg-5 form-box navbar-input d-lg-flex d-none'>
             <input
               type='search'
               className='form-control custom-input '
-              placeholder='search note'
+              placeholder='Search Note'
               value={search}
               required
               onChange={(e) => setSearch(e.target.value)}

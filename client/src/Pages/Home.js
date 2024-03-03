@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NoteContext } from '../Context.js';
-import { FaTrash, FaEdit } from 'react-icons/fa'; // Example with Font Awesome icons
+import { FaTrash, FaEdit } from 'react-icons/fa';
 import Navbar from '../Components/Navbar.js';
 import './Home.css';
 import moment from 'moment';
@@ -9,19 +9,19 @@ import moment from 'moment';
 function Home() {
   const { data, getData, currentUser, onDelete, userId, search, setSearch } =
     useContext(NoteContext);
-  // const [text, setText] = useState(false);
+
   const [expandedNotes, setExpandedNotes] = useState([]);
+
   const [filteredNote, setFiltredNote] = useState(data);
 
-  const filterNote = () => {
-    setFiltredNote(
-      data.filter((item) =>
-        item.title.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  };
-
   useEffect(() => {
+    const filterNote = () => {
+      setFiltredNote(
+        data.filter((item) =>
+          item.title.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    };
     filterNote();
   }, [search, data]);
 
@@ -65,13 +65,14 @@ function Home() {
             {!data.length <= 0 &&
               currentUser &&
               filteredNote.map((item) => (
-                <div className='col-lg-4 col-md-5 mt-3' key={item.id}>
+                <div className='col-lg-4 col-md-5 mt-3' key={item._id}>
                   <div className='note-box d-flex justify-content-between flex-column  p-3 m-2 flex-fill rounded'>
                     <div>
                       <div className='note-title'>
                         <h6 className=''>{item.title.toUpperCase()}</h6>
                         <hr></hr>
                       </div>
+
                       <p
                         className='description lead'
                         style={{
@@ -110,7 +111,7 @@ function Home() {
                       <div className='d-flex'>
                         <div className=' text-center mx-1' title='Edit'>
                           <Link
-                            to={`/update/${item.id}`}
+                            to={`/update/${item._id}`}
                             className='w-100 btn btn-outline-success px-2 py-1'
                           >
                             <FaEdit className='' />
@@ -119,7 +120,7 @@ function Home() {
                         <div className='mx-1' title='Delete'>
                           <button
                             className='btn btn-outline-danger px-2 py-1'
-                            onClick={() => onDelete(item.id)}
+                            onClick={() => onDelete(item._id)}
                           >
                             <FaTrash />
                           </button>

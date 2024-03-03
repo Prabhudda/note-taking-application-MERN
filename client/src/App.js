@@ -11,6 +11,7 @@ import { NoteContext } from './Context.js';
 function App() {
   const location = useLocation();
   const { data, currentUser } = useContext(NoteContext);
+
   return (
     <div className='bg-dark'>
       <Routes>

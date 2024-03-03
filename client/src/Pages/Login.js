@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { NoteContext } from '../Context'; // Fix the path to the Context.js file
+import { NoteContext } from '../Context';
 import './Login.css';
 import Navbar from '../Components/Navbar.js';
 
