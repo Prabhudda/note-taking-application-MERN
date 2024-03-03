@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_KEY;
 const MANGODB_URI = process.env.MANGODB_URI;
 
 //middlewares
-app.use(cors());
+app.use(cors({ origin: 'https://note-taking-application-mern.netlify.app/' }));
 app.use(express.json());
 app.use(cookie());
 
