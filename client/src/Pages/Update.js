@@ -20,7 +20,7 @@ function Update() {
         description: noteData.description || '',
       });
     }
-  }, [noteData, setNote, note]);
+  }, [noteData, setNote]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
