@@ -218,8 +218,8 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
 
-import User from './models/User.js'; // Import the User model
-import Note from './models/Note.js'; // Import the Note model
+import User from '../server/models/UserModel.js';
+import Note from '../server/models/NotesModel.js';
 
 dotenv.config();
 
