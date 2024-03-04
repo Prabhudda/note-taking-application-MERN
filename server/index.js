@@ -447,7 +447,7 @@ app.use('/auth', authRoutes);
 app.use('/notes', noteRoutes);
 
 //database connection
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(`${MONGODB_URI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
