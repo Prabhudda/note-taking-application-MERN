@@ -81,7 +81,7 @@ function NoteProvider({ children }) {
         'https://note-taking-application-mern.onrender.com/create',
         note
       );
-      console.log(response.data);
+      // console.log(response.data);
       setNote({ id: null, title: '', description: '', userId: userId });
       await getData();
       navigate('/');

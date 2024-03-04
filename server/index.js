@@ -72,7 +72,7 @@ app.post('/register', async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Error registering user:', error.message);
+    // console.error('Error registering user:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -118,7 +118,7 @@ app.post('/login', async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Error logging in:', error.message);
+    // console.error('Error logging in:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -130,7 +130,7 @@ app.get('/', async (req, res) => {
     const notes = await Note.find({ userId });
     res.json({ data: notes });
   } catch (error) {
-    console.error('Database query error:', error.message);
+    // console.error('Database query error:', error.message);
     res.status(500).json({ error: 'Database query error' });
   }
 });
@@ -148,7 +148,7 @@ app.post('/create', async (req, res) => {
     await newNote.save();
     res.json({ message: 'Data inserted into the database', data: newNote });
   } catch (error) {
-    console.error('Database query error:', error.message);
+    // console.error('Database query error:', error.message);
     res.status(500).json({ error: 'Database query error' });
   }
 });
@@ -158,10 +158,10 @@ app.delete('/delete/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const result = await Note.deleteOne({ _id: id });
-    console.log(result);
+    // console.log(result);
     res.json({ message: 'Data deleted from the database', data: result });
   } catch (error) {
-    console.error('Database query error:', error.message);
+    // console.error('Database query error:', error.message);
     res.status(500).json({ error: 'Database query error' });
   }
 });
@@ -176,10 +176,10 @@ app.delete('/delete/account/:userId', async (req, res) => {
     // Delete the associated notes
     const result = await Note.deleteMany({ userId });
 
-    console.log(result);
+    // console.log(result);
     res.json({ message: 'User account and associated notes deleted' });
   } catch (error) {
-    console.error('Database query error:', error.message);
+    // console.error('Database query error:', error.message);
     res.status(500).json({ error: 'Database query error' });
   }
 });
@@ -196,7 +196,7 @@ app.put('/update/:id', async (req, res) => {
       res.json({ message: 'Note updated' });
     }
   } catch (error) {
-    console.error('Database query error:', error.message);
+    // console.error('Database query error:', error.message);
     res.status(500).json({ error: 'Database query error' });
   }
 });
