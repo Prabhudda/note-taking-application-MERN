@@ -74,7 +74,7 @@ app.post('/register', async (req, res) => {
         },
       });
     } else {
-      res.json({ message: 'User have an account, plz login' });
+      res.json({ message: 'User, you are already registered. Please login' });
     }
   } catch (error) {
     // console.error('Error registering user:', error.message);
