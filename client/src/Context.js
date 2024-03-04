@@ -20,7 +20,7 @@ function NoteProvider({ children }) {
   const getData = async () => {
     try {
       const response = await axios.get(
-        'https://note-taking-application-mern.onrender.com/note',
+        'https://note-taking-application-mern.onrender.com',
         {
           headers: {
             authorization: userId,
@@ -47,7 +47,7 @@ function NoteProvider({ children }) {
   const onDelete = async (id) => {
     try {
       await axios.delete(
-        `https://note-taking-application-mern.onrender.com/note/delete/${id}`
+        `https://note-taking-application-mern.onrender.com/delete/${id}`
       );
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
@@ -58,7 +58,7 @@ function NoteProvider({ children }) {
   const deleteUserAccount = async () => {
     try {
       await axios.delete(
-        `https://note-taking-application-mern.onrender.com/note/delete/account/${userId}`
+        `https://note-taking-application-mern.onrender.com/delete/account/${userId}`
       );
       Cookies.remove('token');
       localStorage.removeItem('username');
@@ -78,7 +78,7 @@ function NoteProvider({ children }) {
     e.preventDefault();
     try {
       await axios.post(
-        'https://note-taking-application-mern.onrender.com/note/create',
+        'https://note-taking-application-mern.onrender.com/create',
         note
       );
       // console.log(response.data);
@@ -95,7 +95,7 @@ function NoteProvider({ children }) {
   const Login = async (email, password) => {
     try {
       const response = await axios.post(
-        'https://note-taking-application-mern.onrender.com/auth/login',
+        'https://note-taking-application-mern.onrender.com/login',
         {
           email,
           password,
