@@ -218,6 +218,9 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
 
+import User from './models/User.js'; // Import the User model
+import Note from './models/Note.js'; // Import the Note model
+
 dotenv.config();
 
 const app = express();
@@ -247,6 +250,7 @@ mongoose.connection.once('open', () => {
 
 app.delete('/delete/account/:userId', async (req, res) => {
   const userId = req.params.userId;
+  console.log(userId);
   try {
     // Delete the user account
     await User.findByIdAndDelete(userId);
