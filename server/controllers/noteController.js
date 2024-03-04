@@ -58,7 +58,7 @@ export const deleteUserAccount = async (req, res) => {
     await User.findByIdAndDelete(userId);
 
     // Delete the associated notes
-    const result = await Note.deleteMany({ userId });
+    await Note.deleteMany({ userId });
 
     res.json({ message: 'User account and associated notes deleted' });
   } catch (error) {

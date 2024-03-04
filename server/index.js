@@ -245,6 +245,21 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.delete('/delete/account/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    // Delete the user account
+    await User.findByIdAndDelete(userId);
+
+    // Delete the associated notes
+    await Note.deleteMany({ userId });
+
+    res.json({ message: 'User account and associated notes deleted' });
+  } catch (error) {
+    res.status(500).json({ error: 'Database query error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

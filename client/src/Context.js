@@ -77,7 +77,7 @@ function NoteProvider({ children }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      await axios.post(
         'https://note-taking-application-mern.onrender.com/create',
         note
       );
