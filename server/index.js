@@ -218,9 +218,6 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
 
-import User from '../server/models/UserModel.js';
-import Note from '../server/models/NotesModel.js';
-
 dotenv.config();
 
 const app = express();
@@ -232,8 +229,8 @@ app.use(cors({ origin: 'https://note-taking-application-mern.netlify.app' }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/', authRoutes);
-app.use('/', noteRoutes);
+app.use('/auth', authRoutes);
+app.use('/note', noteRoutes);
 
 //database connection
 mongoose.connect(`${MANGODB_URI}`, {
@@ -246,22 +243,6 @@ mongoose.connection.on('error', (error) => {
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-});
-
-app.delete('/delete/account/:userId', async (req, res) => {
-  const userId = req.params.userId;
-  console.log(userId);
-  try {
-    // Delete the user account
-    await User.findByIdAndDelete(userId);
-
-    // Delete the associated notes
-    await Note.deleteMany({ userId });
-
-    res.json({ message: 'User account and associated notes deleted' });
-  } catch (error) {
-    res.status(500).json({ error: 'Database query error' });
-  }
 });
 
 app.listen(PORT, () => {

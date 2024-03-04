@@ -1,4 +1,5 @@
 import Note from '../models/NotesModel.js';
+import User from '../models/UserModel.js';
 
 export const getNotes = async (req, res) => {
   const userId = req.headers.authorization;
@@ -51,17 +52,17 @@ export const updateNote = async (req, res) => {
   }
 };
 
-// export const deleteUserAccount = async (req, res) => {
-//   const userId = req.params.userId;
-//   try {
-//     // Delete the user account
-//     await User.findByIdAndDelete(userId);
+export const deleteUserAccount = async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    // Delete the user account
+    await User.findByIdAndDelete(userId);
 
-//     // Delete the associated notes
-//     await Note.deleteMany({ userId });
+    // Delete the associated notes
+    await Note.deleteMany({ userId });
 
-//     res.json({ message: 'User account and associated notes deleted' });
-//   } catch (error) {
-//     res.status(500).json({ error: 'Database query error' });
-//   }
-// };
+    res.json({ message: 'User account and associated notes deleted' });
+  } catch (error) {
+    res.status(500).json({ error: 'Database query error' });
+  }
+};

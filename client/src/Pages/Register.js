@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://note-taking-application-mern.onrender.com/register',
+        'https://note-taking-application-mern.onrender.com/auth/register',
         {
           username,
           email,
