@@ -43,34 +43,39 @@ app.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const userFound = await User.findOne({ email: email });
+
     // Save user to the database
-    const newUser = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-    });
+    if (!userFound) {
+      const newUser = await User.create({
+        username,
+        email,
+        password: hashedPassword,
+      });
+      // Generate JWT token
+      const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
+        expiresIn: '1d',
+      });
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, {
-      expiresIn: '1d',
-    });
+      // Set token in cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'Strict',
+      });
 
-    // Set token in cookie
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'Strict',
-    });
-
-    res.json({
-      message: 'User registered successfully',
-      user: {
-        username: newUser.username,
-        email: newUser.email,
-        userId: newUser._id,
-        password: password,
-      },
-    });
+      res.json({
+        message: 'User registered successfully',
+        user: {
+          username: newUser.username,
+          email: newUser.email,
+          userId: newUser._id,
+          password: password,
+        },
+      });
+    } else {
+      res.json({ message: 'User have an account, plz login' });
+    }
   } catch (error) {
     // console.error('Error registering user:', error.message);
     res.status(500).json({ error: 'Internal server error' });
@@ -86,14 +91,14 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(401).json({ error: 'Invalid Email id' });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Compare passwords
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
-      return res.status(401).json({ error: 'Invalid password' });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Generate JWT token
