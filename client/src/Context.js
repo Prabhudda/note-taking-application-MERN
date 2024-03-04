@@ -19,11 +19,14 @@ function NoteProvider({ children }) {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080', {
-        headers: {
-          authorization: userId,
-        },
-      });
+      const response = await axios.get(
+        'https://note-taking-application-mern.onrender.com',
+        {
+          headers: {
+            authorization: userId,
+          },
+        }
+      );
       setData(response.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -43,7 +46,9 @@ function NoteProvider({ children }) {
 
   const onDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/delete/${id}`);
+      await axios.delete(
+        `https://note-taking-application-mern.onrender.com/delete/${id}`
+      );
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Error deleting data:', error);
@@ -52,7 +57,9 @@ function NoteProvider({ children }) {
 
   const deleteUserAccount = async () => {
     try {
-      await axios.delete(`http://localhost:8080/delete/account/${userId}`);
+      await axios.delete(
+        `https://note-taking-application-mern.onrender.com/delete/account/${userId}`
+      );
       Cookies.remove('token');
       localStorage.removeItem('username');
       localStorage.removeItem('userId');
@@ -70,7 +77,10 @@ function NoteProvider({ children }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/create', note);
+      const response = await axios.post(
+        'https://note-taking-application-mern.onrender.com/create',
+        note
+      );
       console.log(response.data);
       setNote({ id: null, title: '', description: '', userId: userId });
       await getData();
@@ -84,10 +94,13 @@ function NoteProvider({ children }) {
 
   const Login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:8080/login', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'https://note-taking-application-mern.onrender.com/login',
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.error) {
         setError(response.data.error);

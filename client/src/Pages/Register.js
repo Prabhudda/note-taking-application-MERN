@@ -18,11 +18,14 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/register', {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        'https://note-taking-application-mern.onrender.com/register',
+        {
+          username,
+          email,
+          password,
+        }
+      );
       setLoading(response.data.loading);
       setError(response.data.message);
 
