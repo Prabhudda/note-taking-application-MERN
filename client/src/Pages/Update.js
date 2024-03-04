@@ -25,7 +25,7 @@ function Update() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     await axios.put(
-      `https://note-taking-application-mern.onrender.com/update/${ID}`,
+      `https://note-taking-application-mern.onrender.com/note/update/${ID}`,
       note
     );
     navigation('/');
