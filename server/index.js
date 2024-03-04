@@ -229,8 +229,8 @@ app.use(cors({ origin: 'https://note-taking-application-mern.netlify.app' }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/auth', authRoutes);
-app.use('/notes', noteRoutes);
+app.use('/', authRoutes);
+app.use('/', noteRoutes);
 
 //database connection
 mongoose.connect(`${MANGODB_URI}`, {
