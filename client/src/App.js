@@ -18,8 +18,8 @@ function App() {
         <Route path='/' exact element={<Home />} />
         <Route path='/create' element={<Create />} />
         <Route path='/update/:id' element={<Update />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route path='/api/auth/login' element={<Login />} />
+        <Route path='/api/auth/register' element={<Register />} />
       </Routes>
       {location.pathname === '/' && currentUser && !data.length <= 0 && (
         <Link

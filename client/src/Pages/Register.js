@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://note-taking-application-mern.onrender.com/register',
+        'https://note-taking-application-mern.onrender.com/api/auth/register',
         {
           username,
           email,
@@ -94,7 +94,7 @@ const Register = () => {
             </button>
             <p className='mt-3 text-center'>
               If you have an account,
-              <Link to='/login' className='mx-2'>
+              <Link to='/api/auth/login' className='mx-2'>
                 Login
               </Link>
             </p>

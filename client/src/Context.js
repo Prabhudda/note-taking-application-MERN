@@ -95,7 +95,7 @@ function NoteProvider({ children }) {
   const Login = async (email, password) => {
     try {
       const response = await axios.post(
-        'https://note-taking-application-mern.onrender.com/login',
+        'https://note-taking-application-mern.onrender.com/api/auth/login',
         {
           email,
           password,

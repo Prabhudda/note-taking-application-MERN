@@ -50,7 +50,7 @@ const Login = () => {
             </button>
             <p className='mt-3 text-center'>
               If you don't have an account,
-              <Link to='/register' className='mx-2'>
+              <Link to='/api/auth/register' className='mx-2'>
                 Register
               </Link>
             </p>

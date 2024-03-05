@@ -63,7 +63,7 @@ function Navbar() {
 
           <div className=''>
             {currentUser === null ? (
-              <Link to='/login' className='btn btn-outline-success'>
+              <Link to='/api/auth/login' className='btn btn-outline-success'>
                 Login
               </Link>
             ) : (
@@ -116,7 +116,7 @@ function Navbar() {
                     </div>
                   </div>
                   <Link
-                    to='/login'
+                    to='/api/auth/login'
                     onClick={handleLogout}
                     className='mt-2 w-100 btn btn-outline-danger py-0 py-1 d-flex justify-content-center align-items-center'
                     style={{ fontSize: '12px' }}
@@ -135,7 +135,7 @@ function Navbar() {
               </div>
             ) : (
               <Link
-                to='/register '
+                to='/api/auth/register '
                 className='btn btn-outline-primary rounded-pill '
               >
                 Register
