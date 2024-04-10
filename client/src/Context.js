@@ -64,7 +64,7 @@ function NoteProvider({ children }) {
       localStorage.removeItem('username');
       localStorage.removeItem('userId');
       setCurrentUser(null);
-      navigate('/register');
+      navigate('/api/auth/register');
     } catch (err) {
       console.log(err);
     }
@@ -111,7 +111,7 @@ function NoteProvider({ children }) {
       } else {
         setError('');
 
-        console.log('Logged in successfully:', response.data);
+        // console.log('Logged in successfully:', response.data);
         setCurrentUser(response.data.user.username);
         setUserId(response.data.user.id);
 

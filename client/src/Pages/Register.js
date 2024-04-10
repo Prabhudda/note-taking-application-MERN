@@ -17,6 +17,16 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!username || !password || !email) {
+      setError('Please fill out all fields correctly.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
     try {
       const response = await axios.post(
         'https://note-taking-application-mern.onrender.com/api/auth/register',
@@ -26,6 +36,7 @@ const Register = () => {
           password,
         }
       );
+
       setLoading(response.data.loading);
       setError(response.data.message);
 
