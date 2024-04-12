@@ -3,17 +3,17 @@
 /* dark-theme  */
 /* background-color: #202124; */
 color:#ffff;
+position: relative; /* Ensure the container is positioned */
+    z-index: 1; /* Set the z-index to 1 */
 /* light-theme */
 /* background-color:#ffff;
 color:#202124; */
 }
 .create-note-col{
     height: 455px;
-      /* dark-theme */
-      background-color:#282A3A;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      color: #ffff;
-      /* light-theme */
-      /* background-color:#ffff;
-      color: #202124; */
+    background-color: #282a3a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ffff;
+    position: relative; /* Ensure the column is positioned */
+    z-index: 2; /* Set the z-index to 2 to appear above the container */
   }
