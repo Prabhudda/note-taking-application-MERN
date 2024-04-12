@@ -6,7 +6,6 @@ import Navbar from '../Components/Navbar.js';
 import './Home.css';
 import moment from 'moment';
 
-// Loading component
 const Loading = () => (
   <div className='loading'>
     <h1>Loading...</h1>
@@ -20,8 +19,6 @@ function Home() {
   const [expandedNotes, setExpandedNotes] = useState([]);
 
   const [filteredNote, setFiltredNote] = useState(data);
-
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const filterNote = () => {
@@ -38,16 +35,11 @@ function Home() {
     const fetchData = async () => {
       if (userId !== null) {
         await getData();
-        setLoading(false);
       }
     };
 
     fetchData();
   }, [userId, currentUser, getData]);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div>

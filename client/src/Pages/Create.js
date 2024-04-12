@@ -3,8 +3,18 @@ import { NoteContext } from '..//Context.js';
 import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar.js';
 import './Create.css';
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
 function Create() {
   const { handleInputChange, handleSubmit } = useContext(NoteContext);
+
+  const notify = () => {
+    toast.success('Note created successfully', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000,
+      toastStyle: { width: '300px', minHeight: '100px' },
+    });
+  };
 
   return (
     <div className='container create-main-container'>
@@ -12,7 +22,12 @@ function Create() {
       <div className='d-flex justify-content-center align-items-center vh-100'>
         <div className='create-note-col col-lg-6 col-sm-10 col-12 rounded p-md-5 p-4 mx-auto form-box mt-5'>
           <h2 className='mb-3'>Create Note</h2>
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+              notify();
+            }}
+          >
             <div className='mb-3'>
               <label htmlFor='title' className='form-label'>
                 Title
