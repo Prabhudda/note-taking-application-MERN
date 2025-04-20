@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8082;
 const MANGODB_URI = process.env.MANGODB_URI;
 
 //middlewares
-app.use(cors({ origin: 'https://note-taking-application-mern.netlify.app' }));
+app.use(cors({ origin: 'https://note-hub-app-2vps7.ondigitalocean.app' }));
 app.use(express.json());
 app.use(cookieParser());
 
