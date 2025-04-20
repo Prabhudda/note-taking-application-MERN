@@ -131,7 +131,6 @@ const Login = () => {
                     role='status'
                     aria-hidden='true'
                   ></span>
-                  Logging in...
                 </>
               ) : (
                 'Login'

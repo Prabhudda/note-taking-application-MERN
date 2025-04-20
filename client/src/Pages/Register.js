@@ -107,7 +107,6 @@ const Register = () => {
                 role='status'
                 aria-hidden='true'
             ></span>
-            Registering...
             </>
               ) : (
                 'Register'
