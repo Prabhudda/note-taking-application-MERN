@@ -3,8 +3,8 @@ import { NoteContext } from '..//Context.js';
 import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar.js';
 import './Create.css';
-import { toast } from 'react-toastify'; // Import toast
-import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
+import { toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 function Create() {
   const { handleInputChange, handleSubmit } = useContext(NoteContext);
 
