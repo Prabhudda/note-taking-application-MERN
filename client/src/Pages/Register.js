@@ -96,32 +96,23 @@ const Register = () => {
               />
             </div>
             <button
-  type='submit'
-  className='btn btn-outline-primary w-100 d-flex justify-content-center align-items-center'
-  disabled={loading}
->
-  {loading ? (
-    <>
-      <span
-        className='spinner-border spinner-border-sm me-2'
-        role='status'
-        aria-hidden='true'
-      ></span>
-      Registering...
-    </>
-  ) : (
-    'Register'
-  )}
-</button>
-
-            {/* <button
-              type='submit'
-              className='btn btn-outline-primary w-100'
-              disabled={loading}
+                type='submit'
+                className='btn btn-outline-primary w-100 d-flex justify-content-center align-items-center'
+                disabled={loading}
             >
-              {loading ? 'Loading...' : 'Register'}
-            </button> */}
-            
+            {loading ? (
+            <>
+            <span
+                className='spinner-border spinner-border-sm me-2'
+                role='status'
+                aria-hidden='true'
+            ></span>
+            Registering...
+            </>
+              ) : (
+                'Register'
+              )}
+            </button>
             <p className='mt-3 text-center'>
               If you have an account,
               <Link to='/api/auth/login' className='mx-2'>
